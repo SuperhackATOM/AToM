@@ -21,6 +21,7 @@ const Attest = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { chains, error, isLoading, pendingChainId, switchNetwork } =
         useSwitchNetwork();
+    const [transactionHash, setTransactionHash] = useState('')
     const jaden_address = "0xF7423cF85d8FD5944c4BB29c99844bB1995B7Bb3";
     const showModal = () => {
         setIsModalOpen(true);
@@ -37,24 +38,24 @@ const Attest = () => {
     useEffect(() => {
         if (chain?.id === 84531) {
             //base testnet
-            setContractAddress("0x2BbCDdD17B209dC70493807F62a46a6F3F261072");
+            setContractAddress("0xAcfE09Fd03f7812F022FBf636700AdEA18Fd2A7A");
         } else if (chain?.id === 999) {
             //zora testnet
-            setContractAddress("0xC2679fBD37d54388Ce493F1DB75320D236e1815e");
+            setContractAddress("0xAcfE09Fd03f7812F022FBf636700AdEA18Fd2A7A");
         }
     }, []);
 
     useEffect(() => {
         if (chain?.id === 84531) {
             //base testnet
-            setContractAddress("0x2BbCDdD17B209dC70493807F62a46a6F3F261072");
+            setContractAddress("0xAcfE09Fd03f7812F022FBf636700AdEA18Fd2A7A");
         } else if (chain?.id === 999) {
             //zora testnet
-            setContractAddress("0x2BbCDdD17B209dC70493807F62a46a6F3F261072");
+            setContractAddress("0xAcfE09Fd03f7812F022FBf636700AdEA18Fd2A7A");
         }
     }, [chain]);
 
-    const eas = new EAS(`0x2BbCDdD17B209dC70493807F62a46a6F3F261072`);
+    const eas = new EAS(`0xAcfE09Fd03f7812F022FBf636700AdEA18Fd2A7A`);
 
      function walletClientToSigner(walletClient: WalletClient) {
         const { account, chain, transport } = walletClient
@@ -79,9 +80,8 @@ const Attest = () => {
 
     // const {data: wagmiSigner} = useWalletClient();
     const signer = useEthersSigner()
-    // console.log(wagmiSigner)
+    console.log(signer)
     eas.connect(signer as any);
-    console.log(1)
 
     const location = "Seoul";
     const context = "ETHSEOUL Hackathon";
@@ -92,18 +92,7 @@ const Attest = () => {
         { name: "context", type: "string", value: context }
     ]);
 
-    const tx = eas.attest({
-        data: {
-            recipient: jaden_address,
-            data: encoded_data,
-            refUID: ethers.ZeroHash,
-            revocable: false,
-            expirationTime: 0n
-        },
-        schema: SCHEMAS.ATOM_SCHEMA
-    })
 
-    console.log(tx)
 
 
     const invalidAddressMessage = () => {
@@ -115,8 +104,23 @@ const Attest = () => {
 
     const onAttest = () => {
         if (!isAddress(addressInput)) return invalidAddressMessage();
+        const tx = eas.attest({
+            data: {
+                recipient: addressInput,
+                data: encoded_data,
+                refUID: ethers.ZeroHash,
+                revocable: false,
+                expirationTime: 0n
+            },
+            schema: SCHEMAS.ATOM_SCHEMA
+        })
+
+        tx.then((res) => {
+            setTransactionHash(res.tx.hash)
+        })
 
     };
+
 
 
     return (
@@ -130,29 +134,30 @@ const Attest = () => {
             />
             <Input placeholder={"Enter location of meet"} />
             <Input placeholder={"Enter context of meet"} />
-            <Modal
-                title="Choose network"
-                open={isModalOpen}
-                onOk={handleOk}
-                onCancel={handleCancel}
-            >
-                {chain && <div>Connected to {chain.name}</div>}
+            {/*<Modal*/}
+            {/*    title="Choose network"*/}
+            {/*    open={isModalOpen}*/}
+            {/*    onOk={handleOk}*/}
+            {/*    onCancel={handleCancel}*/}
+            {/*>*/}
+            {/*    {chain && <div>Connected to {chain.name}</div>}*/}
 
-                <Space direction="vertical">
-                    <br />
-                    {chains.map((x) => (
-                        <Button
-                            disabled={!switchNetwork || x.id === chain?.id}
-                            key={x.id}
-                            onClick={() => switchNetwork?.(x.id)}
-                        >
-                            {x.name}
-                            {isLoading && pendingChainId === x.id && " (switching)"}
-                        </Button>
-                    ))}
-                </Space>
-            </Modal>
+            {/*    <Space direction="vertical">*/}
+            {/*        <br />*/}
+            {/*        {chains.map((x) => (*/}
+            {/*            <Button*/}
+            {/*                disabled={!switchNetwork || x.id === chain?.id}*/}
+            {/*                key={x.id}*/}
+            {/*                onClick={() => switchNetwork?.(x.id)}*/}
+            {/*            >*/}
+            {/*                {x.name}*/}
+            {/*                {isLoading && pendingChainId === x.id && " (switching)"}*/}
+            {/*            </Button>*/}
+            {/*        ))}*/}
+            {/*    </Space>*/}
+            {/*</Modal>*/}
             <Button onClick={onAttest}>Make attestation</Button>
+            <span className={styles.hash}>{transactionHash}</span>
         </div>
     );
 };
