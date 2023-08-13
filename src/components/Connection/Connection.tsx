@@ -157,9 +157,7 @@ const Connection = ({
         {/*<Image className={styles.approved} src={} alt={}/>*/}
         <span>*</span>
       </div>
-      <Button type="primary" onClick={showModal}>
-        Verify
-      </Button>
+      <Button onClick={showModal}>Verify</Button>
       <Modal
         title="Choose network"
         open={isModalOpen}
