@@ -27,6 +27,7 @@ export default function Connections() {
             attestations(where: $where) {
               recipient
               schemaId
+              time
             }
           }
         `,
@@ -56,6 +57,7 @@ export default function Connections() {
             attestations(where: $where) {
               recipient
               schemaId
+              time
             }
           }
         `,
@@ -85,6 +87,7 @@ export default function Connections() {
             attestations(where: $where) {
               recipient
               schemaId
+              time
             }
           }
         `,
@@ -117,6 +120,7 @@ export default function Connections() {
               (attestations: any, idx: number) => (
                 <Connection
                   recipientAddress={attestations.recipient}
+                  timestamp={attestations.time}
                   key={idx}
                 />
               )
@@ -133,6 +137,7 @@ export default function Connections() {
               (attestations: any, idx: number) => (
                 <Connection
                   recipientAddress={attestations.recipient}
+                  timestamp={attestations.time}
                   key={idx}
                 />
               )
@@ -150,6 +155,7 @@ export default function Connections() {
               (attestations: any, idx: number) => (
                 <Connection
                   recipientAddress={attestations.recipient}
+                  timestamp={attestations.time}
                   key={idx}
                 />
               )
