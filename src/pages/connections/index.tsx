@@ -129,7 +129,7 @@ export default function Connections() {
             <Empty />
           )}
 
-          <Title level={4} style={{ marginTop: " 48px" }}>
+          {/* <Title level={4} style={{ marginTop: " 48px" }}>
             Sepolia
           </Title>
           {sepoliaClientData?.attestations.length !== 0 ? (
@@ -144,7 +144,7 @@ export default function Connections() {
             )
           ) : (
             <Empty />
-          )}
+          )} */}
 
           <Title level={4} style={{ marginTop: " 48px" }}>
             Optimism
