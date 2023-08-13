@@ -43,7 +43,7 @@ export default function Connections() {
           },
         },
       })
-      .then((result) => setBaseClientData(result.data));
+      .then((result: any) => setBaseClientData(result.data));
 
     const sepoliaClient = new ApolloClient({
       uri: "https://sepolia.easscan.org/graphql",
@@ -73,7 +73,7 @@ export default function Connections() {
           },
         },
       })
-      .then((result) => setSepoliaClientData(result.data));
+      .then((result: any) => setSepoliaClientData(result.data));
 
     const optimismClient = new ApolloClient({
       uri: "https://optimism-goerli-bedrock.easscan.org/graphql",
@@ -103,7 +103,7 @@ export default function Connections() {
           },
         },
       })
-      .then((result) => setOptimismClientData(result.data));
+      .then((result: any) => setOptimismClientData(result.data));
   }, []);
 
   return (
