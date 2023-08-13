@@ -156,7 +156,10 @@ const Attest = () => {
             {/*    </Space>*/}
             {/*</Modal>*/}
             <Button onClick={onAttest}>Make attestation</Button>
-            <span className={styles.hash}>{transactionHash}</span>
+            <span className={styles.hash}>
+                <a href={`https://base-goerli.easscan.org/schema/view/0x22cc8bd78942a630e45ac11521b9d126675b9e1958c5a269cdbda9c2749dd872`}>{transactionHash}</a>
+
+            </span>
         </div>
     );
 };
