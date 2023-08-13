@@ -2,11 +2,13 @@ import {useAccount, useContractWrite, useNetwork, useSwitchNetwork} from "wagmi"
 import styles from "./style.module.scss";
 import {Button, Input, message, Modal, Space} from "antd";
 import { isAddress, createWalletClient } from "viem";
-import { useEffect, useState } from "react";
+import {useEffect, useMemo, useState} from "react";
 import { EAS, Offchain, SchemaEncoder, SchemaRegistry } from "@ethereum-attestation-service/eas-sdk";
 import { ethers } from 'ethers';
 import { SCHEMAS } from './Schema';
-import { useWalletClient, usePublicClient } from 'wagmi';
+import { useWalletClient, type WalletClient } from 'wagmi';
+
+import { BrowserProvider, JsonRpcSigner } from 'ethers'
 
 const Attest = () => {
     const { address, isConnected } = useAccount();
@@ -54,11 +56,32 @@ const Attest = () => {
 
     const eas = new EAS(`0x2BbCDdD17B209dC70493807F62a46a6F3F261072`);
 
-    const {data: wagmiSigner} = useWalletClient();
+     function walletClientToSigner(walletClient: WalletClient) {
+        const { account, chain, transport } = walletClient
+        const network = {
+            chainId: chain.id,
+            name: chain.name,
+            ensAddress: chain.contracts?.ensRegistry?.address,
+        }
+        const provider = new BrowserProvider(transport, network)
+        const signer = new JsonRpcSigner(provider, account.address)
+        return signer
+    }
 
+    /** Hook to convert a viem Wallet Client to an ethers.js Signer. */
+    function useEthersSigner({ chainId }: { chainId?: number } = {}) {
+        const { data: walletClient } = useWalletClient({ chainId })
+        return useMemo(
+            () => (walletClient ? walletClientToSigner(walletClient) : undefined),
+            [walletClient],
+        )
+    }
+
+    // const {data: wagmiSigner} = useWalletClient();
+    const signer = useEthersSigner()
     // console.log(wagmiSigner)
-    eas.connect(wagmiSigner as any);
-    console.log(eas.get)
+    eas.connect(signer as any);
+    console.log(1)
 
     const location = "Seoul";
     const context = "ETHSEOUL Hackathon";
@@ -73,7 +96,7 @@ const Attest = () => {
         data: {
             recipient: jaden_address,
             data: encoded_data,
-            refUID: ethers.constants.HashZero,
+            refUID: ethers.ZeroHash,
             revocable: false,
             expirationTime: 0n
         },
