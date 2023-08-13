@@ -16,7 +16,7 @@ const data = [
   {
     data: {
       id: "0x01",
-      label: "eddy.eth",
+      label: "0x7742...7Bb3",
       bgImg:
         "https://i.seadn.io/gcs/files/7d0d02a79f3da14e97e3082a8e137d4f.png?auto=format&dpr=1&w=640",
     },
@@ -103,6 +103,7 @@ const style = [
   {
     selector: "node",
     style: {
+      // "border-color": "data(label)" === "0x7742...7Bb3" && "red",
       "background-color": "#666",
       "background-fit": "cover",
       "background-image": "data(bgImg)",
