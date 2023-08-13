@@ -43,7 +43,7 @@ export default function Connections() {
           },
         },
       })
-      .then((result: any) => setBaseClientData(result.data));
+      .then((result) => setBaseClientData(result.data));
 
     const sepoliaClient = new ApolloClient({
       uri: "https://sepolia.easscan.org/graphql",
