@@ -44,8 +44,10 @@ const Header = () => {
       {/* <Button text={"0x8675*****a8f2"} /> */}
 
       {isConnected ? (
-        <Button danger size="middle" onClick={() => disconnect()}>
-          {ensName ? ensName : address}
+        <Button size="large" onClick={() => disconnect()}>
+          {ensName
+            ? ensName
+            : `${address!.slice(0, 6)}...${address!.slice(-4)}`}
         </Button>
       ) : (
         <ConnectKitButton theme="soft" mode="light" />
