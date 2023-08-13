@@ -14,7 +14,7 @@ const Attest = () => {
     const { address, isConnected } = useAccount();
     const [messageApi, contextHolder] = message.useMessage();
     const { chain } = useNetwork();
-    const [contractAddress, setContractAddress] = useState<`0x${string}`>("");
+    const [contractAddress, setContractAddress] = useState<`0x${string}`>(`0xAcfE09Fd03f7812F022FBf636700AdEA18Fd2A7A`);
     const [addressInput, setAddressInput] = useState("");
     const [locationInput, setLocationInput] = useState("");
     const [contextInput, setContextInput] = useState("");
@@ -110,7 +110,6 @@ const Attest = () => {
                 data: encoded_data,
                 refUID: ethers.ZeroHash,
                 revocable: false,
-                expirationTime: 0n
             },
             schema: SCHEMAS.ATOM_SCHEMA
         })
