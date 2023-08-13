@@ -37,7 +37,7 @@
   resolved "https://registry.npmjs.org/@ant-design/icons-svg/-/icons-svg-4.3.0.tgz"
   integrity sha512-WOgvdH/1Wl8Z7VXigRbCa5djO14zxrNTzvrAQzhWiBQtEKT0uTc8K1ltjKZ8U1gPn/wXhMA8/jE39SJl0WNxSg==
 
-"@ant-design/icons@^5.2.2":
+"@ant-design/icons@^5.2.2", "@ant-design/icons@^5.2.5":
   version "5.2.5"
   resolved "https://registry.npmjs.org/@ant-design/icons/-/icons-5.2.5.tgz"
   integrity sha512-9Jc59v5fl5dzmxqLWtRev3dJwU7Ya9ZheoI6XmZjZiQ7PRtk77rC+Rbt7GJzAPPg43RQ4YO53RE1u8n+Et97vQ==
@@ -1938,7 +1938,7 @@ concat-map@0.0.1:
 
 connectkit@^1.5.1:
   version "1.5.1"
-  resolved "https://registry.yarnpkg.com/connectkit/-/connectkit-1.5.1.tgz#0a3ac7aa29a031052fc636911848708489da7a4a"
+  resolved "https://registry.npmjs.org/connectkit/-/connectkit-1.5.1.tgz"
   integrity sha512-5w3Ljr7VNPwH3AQLxk94gtvjopcSsbCjABiPHvi3YLMQq9WCu5jycfLD5kUCx2kZJDahF9oFIV267XEqLLYjxA==
   dependencies:
     buffer "^6.0.3"
