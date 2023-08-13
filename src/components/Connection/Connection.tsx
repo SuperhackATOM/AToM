@@ -15,7 +15,7 @@ import { isAddress } from "viem";
 
 const { Text, Link } = Typography;
 
-const Connection = () => {
+const Connection = ({ recipientAddress }: { recipientAddress: string }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { chain } = useNetwork();
   const { chains, error, isLoading, pendingChainId, switchNetwork } =
@@ -24,9 +24,6 @@ const Connection = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [contractAddress, setContractAddress] = useState<`0x${string}`>(
     "0x2BbCDdD17B209dC70493807F62a46a6F3F261072"
-  );
-  const [addressInput, setAddressInput] = useState(
-    "0xC7F5D837671539FFc7fDDd4B9E08cCcC1f984B4C"
   );
 
   useEffect(() => {
@@ -53,9 +50,16 @@ const Connection = () => {
     address: contractAddress,
     abi: ATOM_abi,
     functionName: "mintATOM",
-    args: [[address, addressInput], "0", "0x0102"],
+    args: [[address, recipientAddress], "0", "0x0102"],
     onError(error) {
-      console.log("Error", error);
+      Modal.error({
+        title: "Failed to mint ATOM",
+        content: (
+          <>
+            <p style={{ wordBreak: "break-all" }}> Failed </p>
+          </>
+        ),
+      });
     },
     onSuccess(data) {
       Modal.success({
@@ -83,8 +87,6 @@ const Connection = () => {
     },
   });
 
-  console.log(chain);
-
   const invalidAddressMessage = () => {
     messageApi.open({
       type: "warning",
@@ -93,7 +95,7 @@ const Connection = () => {
   };
 
   const onAttest = () => {
-    if (!isAddress(addressInput)) return invalidAddressMessage();
+    if (!isAddress(recipientAddress)) return invalidAddressMessage();
 
     write();
   };
@@ -126,9 +128,7 @@ const Connection = () => {
       {contextHolder}
       <div className={styles.connection}>
         {/*<Image src={} alt={}/>*/}
-        <span className={styles.address}>
-          0x8675a1C67BD6e644155fC88a8E83Ee84A4a8a8f2
-        </span>
+        <span className={styles.address}>{recipientAddress}</span>
         <div className={styles.date}>
           <span className={styles.date__top}>08/11/2023</span>
           <span className={styles.date__bottom}>1:02:51 am</span>
