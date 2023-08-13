@@ -1,11 +1,11 @@
 import { Divider, Layout, Typography, theme } from "antd";
-import Profile from "../components/Profile";
-import ContractRead from "../components/ContractRead";
-import ContractWrite from "../components/ContractWrite";
-import DeepLink from "../components/DeepLink";
-import ImageUpload from "../components/ImageUpload";
-import ChangeNetwork from "../components/ChangeNetwork";
-import Cytoscape from "../components/Cytoscape";
+import Profile from "../components/Profile/Profile";
+import ContractRead from "../components/ContractRead/ContractRead";
+import ContractWrite from "../components/ContractWrite/ContractWrite";
+import DeepLink from "../components/DeepLink/DeepLink";
+import ImageUpload from "../components/ImageUpload/ImageUpload";
+import ChangeNetwork from "../components/ChangeNetwork/ChangeNetwork";
+import Cytoscape from "../components/Cytoscape/Cytoscape";
 
 const { Content, Footer } = Layout;
 export default function Home() {

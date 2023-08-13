@@ -1,0 +1,25 @@
+@import "../../app/styles/variables";
+
+.active {
+  background-color: $color-gray;
+  border-radius: 24px;
+}
+
+.menuLink {
+  padding: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  img {
+    height: 16px;
+    width: 16px;
+    margin-right: 8px;
+  }
+
+  h4 {
+    color: $color-black;
+    font-size: 16px;
+    font-weight: normal;
+  }
+}

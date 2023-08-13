@@ -1,0 +1,15 @@
+@import "../../app/styles/variables";
+
+.button {
+  color: gray;
+  border: none;
+  margin: 0;
+  padding: 12px;
+  cursor: pointer;
+  text-align: inherit;
+  font: inherit;
+  appearance: none;
+
+  background-color: $color-gray;
+  border-radius: 24px;
+}
