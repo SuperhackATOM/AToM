@@ -1,6 +1,47 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import "antd/dist/reset.css";
+import type { AppProps } from "next/app";
+import { useEffect, useState } from "react";
+import { WagmiConfig, createConfig, configureChains } from "wagmi";
+import { publicProvider } from "wagmi/providers/public";
+import { ConnectKitProvider, getDefaultConfig } from "connectkit";
+
+import {
+  zoraTestnet,
+  zora,
+  mainnet,
+  optimism,
+  optimismGoerli,
+  baseGoerli,
+} from "wagmi/chains";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const { publicClient, chains } = configureChains(
+    [mainnet, zora, zoraTestnet, optimism, optimismGoerli, baseGoerli],
+    [publicProvider()]
+  );
+
+  const config = createConfig(
+    getDefaultConfig({
+      walletConnectProjectId: "da6313719cfeb6f79fe91e37e479d4ed",
+      appName: "POM",
+      chains,
+      publicClient,
+    })
+  );
+
+  return (
+    mounted && (
+      <WagmiConfig config={config}>
+        <ConnectKitProvider>
+          <Component {...pageProps} />
+        </ConnectKitProvider>
+      </WagmiConfig>
+    )
+  );
 }
