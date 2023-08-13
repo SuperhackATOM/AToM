@@ -15,7 +15,13 @@ import { isAddress } from "viem";
 
 const { Text, Link } = Typography;
 
-const Connection = ({ recipientAddress }: { recipientAddress: string }) => {
+const Connection = ({
+  recipientAddress,
+  timestamp,
+}: {
+  recipientAddress: string;
+  timestamp: number;
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { chain } = useNetwork();
   const { chains, error, isLoading, pendingChainId, switchNetwork } =
@@ -45,6 +51,16 @@ const Connection = ({ recipientAddress }: { recipientAddress: string }) => {
       setContractAddress("0x2BbCDdD17B209dC70493807F62a46a6F3F261072");
     }
   }, [chain]);
+
+  const _timestamp = timestamp * 1000;
+  const date = new Date(_timestamp);
+
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  const seconds = date.getSeconds().toString().padStart(2, "0");
 
   const { write } = useContractWrite({
     address: contractAddress,
@@ -130,8 +146,12 @@ const Connection = ({ recipientAddress }: { recipientAddress: string }) => {
         {/*<Image src={} alt={}/>*/}
         <span className={styles.address}>{recipientAddress}</span>
         <div className={styles.date}>
-          <span className={styles.date__top}>08/11/2023</span>
-          <span className={styles.date__bottom}>1:02:51 am</span>
+          <span className={styles.date__top}>
+            {day}/{month}/{year}
+          </span>
+          <span className={styles.date__bottom}>
+            {hours}:{minutes}:{seconds}{" "}
+          </span>
         </div>
 
         {/*<Image className={styles.approved} src={} alt={}/>*/}
