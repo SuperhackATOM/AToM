@@ -32,7 +32,7 @@ const ContractWrite = () => {
           </Button> */}
         </div>
       ) : (
-        <p>Plaese Connect Wallet first</p>
+        <p>Please Connect Wallet first</p>
       )}
 
       {isLoading && <div>Check Wallet</div>}
