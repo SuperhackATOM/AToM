@@ -9,7 +9,7 @@ import connections from "@/assets/connections.svg";
 // import { Button } from "@/components/Button/Button";
 import { useAccount, useDisconnect, useEnsName } from "wagmi";
 import { ConnectKitButton } from "connectkit";
-import { Button } from "antd";
+import { Button, Popconfirm } from "antd";
 
 const Header = () => {
   const { address, isConnected } = useAccount();
@@ -44,11 +44,19 @@ const Header = () => {
       {/* <Button text={"0x8675*****a8f2"} /> */}
 
       {isConnected ? (
-        <Button size="large" onClick={() => disconnect()}>
-          {ensName
-            ? ensName
-            : `${address!.slice(0, 6)}...${address!.slice(-4)}`}
-        </Button>
+        <Popconfirm
+          title="Disconnect wallet?"
+          description="Are you sure you want to disconnect your wallet?"
+          onConfirm={() => disconnect()}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Button size="large">
+            {ensName
+              ? ensName
+              : `${address!.slice(0, 6)}...${address!.slice(-4)}`}
+          </Button>
+        </Popconfirm>
       ) : (
         <ConnectKitButton theme="soft" mode="light" />
       )}
