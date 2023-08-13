@@ -6,7 +6,7 @@ import {Navigation} from "@/components/Layout/Navigation/Navigation";
 import attest from "@/assets/attest.svg";
 import graph from "@/assets/graph.svg";
 import connections from "@/assets/connections.svg";
-import {Button} from "@/components/Button/Button";
+import { Button } from 'antd';
 
 const Header = () => {
 
@@ -35,7 +35,7 @@ const Header = () => {
             <div className={styles.middleMenu}>
                 <Navigation navLinks={navLinks}/>
             </div>
-            <Button text={"0x8675*****a8f2"}/>
+            <Button>0x8675*****a8f2</Button>
         </header>
     )
 }

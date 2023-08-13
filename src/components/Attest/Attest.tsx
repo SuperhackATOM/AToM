@@ -1,12 +1,14 @@
 import styles from "./style.module.scss"
-import {Button} from "@/components/Button/Button";
+import { Button, Input, Typography } from 'antd';
 
 const Attest = () => {
     return (
         <div className={styles.attest}>
-            <h4 className={styles.title}>Attest meet</h4>
-            <input placeholder={"Enter your ETH address here..."}/>
-            <Button text={'Attest'}/>
+            <h4 className={styles.title}>Attest meet with</h4>
+            <Input placeholder={"Enter recipient ETH address here..."}/>
+            <Input placeholder={"Enter location of meet"}/>
+            <Input placeholder={"Enter context of meet"}/>
+            <Button>Attest</Button>
         </div>
     );
 };
