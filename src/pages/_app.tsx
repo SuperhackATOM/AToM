@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { WagmiConfig, createConfig, configureChains } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
+import "../styles/globals.scss";
 
 import {
   zoraTestnet,
@@ -13,6 +14,7 @@ import {
   optimismGoerli,
   baseGoerli,
 } from "wagmi/chains";
+import {Header} from "@/components/Layout/Header/Header";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [mounted, setMounted] = useState(false);
@@ -39,6 +41,7 @@ export default function App({ Component, pageProps }: AppProps) {
     mounted && (
       <WagmiConfig config={config}>
         <ConnectKitProvider>
+            <Header/>
           <Component {...pageProps} />
         </ConnectKitProvider>
       </WagmiConfig>

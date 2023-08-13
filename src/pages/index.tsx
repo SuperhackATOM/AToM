@@ -1,5 +1,7 @@
+import {Attest} from "@/components/Attest/Attest";
+
 const index = () => {
-  return <div>index</div>;
+  return <Attest/>
 };
 
 export default index;
