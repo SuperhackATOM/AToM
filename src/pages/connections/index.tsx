@@ -1,5 +1,5 @@
 
-import styles from "./page.module.scss"
+import styles from "./style.module.scss"
 import {Connection} from "@/components/Connection/Connection";
 export default function Connections() {
     return (

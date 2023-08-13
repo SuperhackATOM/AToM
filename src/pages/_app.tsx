@@ -42,7 +42,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <WagmiConfig config={config}>
         <ConnectKitProvider>
             <Header/>
-          <Component {...pageProps} />
+            <div className={'wrapper'}>
+                <Component {...pageProps}/>
+            </div>
         </ConnectKitProvider>
       </WagmiConfig>
     )

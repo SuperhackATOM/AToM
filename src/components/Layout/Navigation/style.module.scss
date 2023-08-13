@@ -6,15 +6,19 @@
 }
 
 .menuLink {
-  padding: 12px;
+  padding: 12px 12px 6px 12px;
   display: flex;
   flex-direction: row;
+
   align-items: center;
+
 
   img {
     height: 16px;
     width: 16px;
     margin-right: 8px;
+
+    align-self: baseline;
   }
 
   h4 {
