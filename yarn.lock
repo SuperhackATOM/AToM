@@ -1931,7 +1931,7 @@ concat-map@0.0.1:
 
 connectkit@^1.5.1:
   version "1.5.1"
-  resolved "https://registry.npmjs.org/connectkit/-/connectkit-1.5.1.tgz"
+  resolved "https://registry.yarnpkg.com/connectkit/-/connectkit-1.5.1.tgz#0a3ac7aa29a031052fc636911848708489da7a4a"
   integrity sha512-5w3Ljr7VNPwH3AQLxk94gtvjopcSsbCjABiPHvi3YLMQq9WCu5jycfLD5kUCx2kZJDahF9oFIV267XEqLLYjxA==
   dependencies:
     buffer "^6.0.3"

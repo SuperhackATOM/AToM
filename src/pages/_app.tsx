@@ -14,7 +14,7 @@ import {
   optimismGoerli,
   baseGoerli,
 } from "wagmi/chains";
-import {Header} from "@/components/Layout/Header/Header";
+import { Header } from "@/components/Layout/Header/Header";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [mounted, setMounted] = useState(false);
@@ -41,10 +41,10 @@ export default function App({ Component, pageProps }: AppProps) {
     mounted && (
       <WagmiConfig config={config}>
         <ConnectKitProvider>
-            <Header/>
-            <div className={'wrapper'}>
-                <Component {...pageProps}/>
-            </div>
+          <Header />
+          <div className={"wrapper"}>
+            <Component {...pageProps} />
+          </div>
         </ConnectKitProvider>
       </WagmiConfig>
     )
